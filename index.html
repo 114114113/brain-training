@@ -73,7 +73,7 @@
       border: 2px solid #cbd5e1;
     }
 
-    /* 換成與大腦益智拼圖/邏輯訓練相關的精美高畫質背景圖 */
+    /* 健腦主題高畫質背景圖 */
     .hero-bg {
       background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop');
       background-size: cover;
@@ -128,7 +128,7 @@
     <!-- 首頁視圖 -->
     <div id="home-view" class="space-y-6">
       
-      <!-- 健腦益智主題 Hero 橫幅 -->
+      <!-- Hero 橫幅 -->
       <div class="hero-bg rounded-3xl relative overflow-hidden shadow-xl border border-slate-200 min-h-[290px] flex items-center">
         <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 via-teal-900/80 to-transparent"></div>
         
@@ -362,7 +362,6 @@
   </div>
 
   <script>
-    /* 洗牌演算法：確保隨機性與防重複 */
     function shuffleArray(array) {
       const arr = [...array];
       for (let i = arr.length - 1; i > 0; i--) {
@@ -529,7 +528,7 @@
         subtitle: "語言能力 & 詞彙提取",
         icon: "📚",
         ability: "詞彙記憶提取、語意分類歸納、邏輯順序重組。",
-        rules: "1. 【類別歸納】：選出 4 個詞彙中不同類別者。\n2. 【詞語重組】：按正確順序點擊重組成語。\n3. 龐大題庫隨機抽取 10 題，保證每局新鮮感！"
+        rules: "1. 【類別歸納】：請觀察並選出『不同類別』的項目。\n2. 【詞語重組】：請按正確順序點擊字卡，拼出四字成語。\n3. 大題庫隨機抽題與二次洗牌，充滿新鮮感！"
       }
     };
 
@@ -651,7 +650,7 @@
     }
 
     /* ---------------------------------------------------------------------- */
-    /* 2. 記憶對對碰 (海量圖案隨機抽取) */
+    /* 2. 記憶對對碰 */
     /* ---------------------------------------------------------------------- */
     function initMemoryGame() {
       const container = document.getElementById('game-container');
@@ -764,7 +763,7 @@
     }
 
     /* ---------------------------------------------------------------------- */
-    /* 4. 閃電心算 (動態生成題目，絕不重複) */
+    /* 4. 閃電心算 */
     /* ---------------------------------------------------------------------- */
     function initMathGame() {
       const container = document.getElementById('game-container');
@@ -842,7 +841,7 @@
     }
 
     /* ---------------------------------------------------------------------- */
-    /* 5. 顏色找不同 (SVG 圖案與多樣配色) */
+    /* 5. 顏色找不同 */
     /* ---------------------------------------------------------------------- */
     function initSpotGame() {
       const container = document.getElementById('game-container');
@@ -910,36 +909,39 @@
     }
 
     /* ---------------------------------------------------------------------- */
-    /* 6. 語文智慧王 (大題庫防重複) */
+    /* 6. 語文智慧王 (隱藏提示文字，考驗觀察力與成語記憶) */
     /* ---------------------------------------------------------------------- */
     function initLanguageGame() {
       const container = document.getElementById('game-container');
       
       const categoryQuestions = [
-        { title: '請選出「不屬於水果類」的項目：', items: ['蘋果', '香蕉', '高麗菜', '葡萄'], correct: '高麗菜' },
-        { title: '請選出「不屬於交通工具」的項目：', items: ['公車', '捷運', '火車', '冰淇淋'], correct: '冰淇淋' },
-        { title: '請選出「不屬於家電」的項目：', items: ['襯衫', '長褲', '外套', '電風扇'], correct: '電風扇' },
-        { title: '請選出「不屬於動物」的項目：', items: ['老虎', '獅子', '大象', '桌子'], correct: '桌子' },
-        { title: '請選出「不屬於家電」的項目：', items: ['電視', '冰箱', '洗衣機', '西瓜'], correct: '西瓜' },
-        { title: '請選出「不屬於飛禽類」的項目：', items: ['老鷹', '麻雀', '鴿子', '海豚'], correct: '海豚' },
-        { title: '請選出「不屬於文具」的項目：', items: ['鉛筆', '橡皮擦', '尺', '湯匙'], correct: '湯匙' },
-        { title: '請選出「不屬於餐具」的項目：', items: ['筷子', '碗', '盤子', '拖鞋'], correct: '拖鞋' }
+        { items: ['蘋果', '香蕉', '高麗菜', '葡萄'], correct: '高麗菜' },
+        { items: ['公車', '捷運', '火車', '冰淇淋'], correct: '冰淇淋' },
+        { items: ['襯衫', '長褲', '外套', '電風扇'], correct: '電風扇' },
+        { items: ['老虎', '獅子', '大象', '桌子'], correct: '桌子' },
+        { items: ['電視', '冰箱', '洗衣機', '西瓜'], correct: '西瓜' },
+        { items: ['老鷹', '麻雀', '鴿子', '海豚'], correct: '海豚' },
+        { items: ['鉛筆', '橡皮擦', '尺', '湯匙'], correct: '湯匙' },
+        { items: ['筷子', '碗', '盤子', '拖鞋'], correct: '拖鞋' },
+        { items: ['玫瑰', '百合', '菊花', '高鐵'], correct: '高鐵' },
+        { items: ['黃金', '白銀', '青銅', '麵包'], correct: '麵包' }
       ];
 
       const reorderQuestions = [
-        { title: '請依序點擊文字拼出成語：【健 康 平 安】', answer: ['健', '康', '平', '安'] },
-        { title: '請依序點擊文字拼出成語：【吉 祥 如 意】', answer: ['吉', '祥', '如', '意'] },
-        { title: '請依序點擊文字拼出成語：【四 季 平 安】', answer: ['四', '季', '平', '安'] },
-        { title: '請依序點擊文字拼出成語：【積 少 成 多】', answer: ['積', '少', '成', '多'] },
-        { title: '請依序點擊文字拼出成語：【知 足 常 樂】', answer: ['知', '足', '常', '樂'] },
-        { title: '請依序點擊文字拼出成語：【風 調 雨 順】', answer: ['風', '調', '雨', '順'] },
-        { title: '請依序點擊文字拼出成語：【迎 春 接 福】', answer: ['迎', '春', '接', '福'] },
-        { title: '請依序點擊文字拼出成語：【熟 能 生 巧】', answer: ['熟', '能', '生', '巧'] }
+        { answer: ['健', '康', '平', '安'] },
+        { answer: ['吉', '祥', '如', '意'] },
+        { answer: ['四', '季', '平', '安'] },
+        { answer: ['積', '少', '成', '多'] },
+        { answer: ['知', '足', '常', '樂'] },
+        { answer: ['風', '調', '雨', '順'] },
+        { answer: ['迎', '春', '接', '福'] },
+        { answer: ['熟', '能', '生', '巧'] },
+        { answer: ['國', '泰', '民', '安'] },
+        { answer: ['萬', '事', '如', '意'] }
       ];
 
-      // 隨機組合 10 題
-      const selectedCategory = shuffleArray(categoryQuestions).slice(0, 5).map(q => ({ ...q, type: 'category' }));
-      const selectedReorder = shuffleArray(reorderQuestions).slice(0, 5).map(q => ({ ...q, type: 'reorder' }));
+      const selectedCategory = shuffleArray(categoryQuestions).slice(0, 5).map(q => ({ ...q, type: 'category', prompt: '請選出「不同類別」的項目：' }));
+      const selectedReorder = shuffleArray(reorderQuestions).slice(0, 5).map(q => ({ ...q, type: 'reorder', prompt: '請依序點擊文字重組四字成語：' }));
       const questions = shuffleArray([...selectedCategory, ...selectedReorder]);
 
       let round = 0;
@@ -961,8 +963,8 @@
             <div class="text-center space-y-5 w-full max-w-md">
               <div class="text-xs text-slate-400 font-extrabold">第 ${round} / ${questions.length} 題</div>
               
-              <div class="bg-cyan-50 border-2 border-cyan-200 text-cyan-950 font-black text-lg py-3 px-4 rounded-2xl">
-                ${q.title}
+              <div class="bg-cyan-50 border-2 border-cyan-200 text-cyan-950 font-black text-lg py-3.5 px-4 rounded-2xl">
+                ${q.prompt}
               </div>
 
               <div class="grid grid-cols-2 gap-2.5 pt-1">
@@ -982,8 +984,8 @@
             <div class="text-center space-y-4 w-full max-w-md">
               <div class="text-xs text-slate-400 font-extrabold">第 ${round} / ${questions.length} 題</div>
               
-              <div class="bg-cyan-50 border-2 border-cyan-200 text-cyan-950 font-black text-lg py-3 px-4 rounded-2xl">
-                ${q.title}
+              <div class="bg-cyan-50 border-2 border-cyan-200 text-cyan-950 font-black text-lg py-3.5 px-4 rounded-2xl">
+                ${q.prompt}
               </div>
 
               <div id="word-display" class="h-16 bg-slate-100 rounded-2xl border-2 border-slate-200 flex items-center justify-center space-x-2 text-2xl font-black text-teal-700">
