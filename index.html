@@ -909,7 +909,7 @@
     }
 
     /* ---------------------------------------------------------------------- */
-    /* 6. 語文智慧王 (全局記憶庫：跨局抽題絕不重複，題庫抽光才自動重置) */
+    /* 6. 語文智慧王 (全局記憶庫：跨局抽題絕不重複，修復重新選字跳關Bug) */
     /* ---------------------------------------------------------------------- */
     const masterCategoryPool = [
       { items: ['蘋果', '香蕉', '高麗菜', '葡萄'], correct: '高麗菜' },
@@ -962,28 +962,23 @@
       { answer: ['龍', '馬', '精', '神'] }
     ];
 
-    // 歷史已出題目的索引集合
     let usedCategoryIndices = new Set();
     let usedReorderIndices = new Set();
 
     function initLanguageGame() {
       const container = document.getElementById('game-container');
 
-      // 檢查類別題庫剩餘量，不足 5 題就自動重置
       if (masterCategoryPool.length - usedCategoryIndices.size < 5) {
         usedCategoryIndices.clear();
       }
-      // 檢查成語題庫剩餘量，不足 5 題就自動重置
       if (masterReorderPool.length - usedReorderIndices.size < 5) {
         usedReorderIndices.clear();
       }
 
-      // 從剩餘類別題庫中抽 5 題
       const availCatIndices = masterCategoryPool.map((_, i) => i).filter(i => !usedCategoryIndices.has(i));
       const chosenCatIndices = shuffleArray(availCatIndices).slice(0, 5);
       chosenCatIndices.forEach(i => usedCategoryIndices.add(i));
 
-      // 從剩餘成語題庫中抽 5 題
       const availReorderIndices = masterReorderPool.map((_, i) => i).filter(i => !usedReorderIndices.has(i));
       const chosenReorderIndices = shuffleArray(availReorderIndices).slice(0, 5);
       chosenReorderIndices.forEach(i => usedReorderIndices.add(i));
@@ -1000,7 +995,6 @@
         prompt: '請依序點擊文字重組四字成語：' 
       }));
 
-      // 打亂本局 10 題的出題順序
       const questions = shuffleArray([...selectedCategory, ...selectedReorder]);
 
       let round = 0;
@@ -1048,19 +1042,19 @@
               </div>
 
               <div id="word-display" class="h-16 bg-slate-100 rounded-2xl border-2 border-slate-200 flex items-center justify-center space-x-2 text-2xl font-black text-teal-700">
-                <span class="text-slate-400 text-sm font-bold">點擊下方字卡...</span>
+                <span id="placeholder-text" class="text-slate-400 text-sm font-bold">點擊下方字卡...</span>
               </div>
 
               <div class="grid grid-cols-4 gap-2 pt-1" id="word-buttons">
                 ${shuffledWords.map((w) => `
                   <button onclick="pickWord('${w}', this)" 
-                    class="h-16 bg-white hover:bg-cyan-50 text-slate-900 font-black rounded-2xl text-2xl transition border-2 border-slate-300 shadow-sm flex items-center justify-center">
+                    class="word-btn h-16 bg-white hover:bg-cyan-50 text-slate-900 font-black rounded-2xl text-2xl transition border-2 border-slate-300 shadow-sm flex items-center justify-center">
                     ${w}
                   </button>
                 `).join('')}
               </div>
 
-              <button onclick="resetReorder()" class="text-xs text-slate-500 font-extrabold underline pt-1">
+              <button onclick="resetReorder()" class="text-xs text-slate-500 font-extrabold underline pt-1 cursor-pointer hover:text-slate-700">
                 重新選字
               </button>
             </div>
@@ -1085,10 +1079,17 @@
             }
           };
 
+          // 正確的重置選字邏輯：清空畫面與輸入陣列，恢復字卡狀態，不觸發跳關
           window.resetReorder = () => {
             currentSelectedWords = [];
-            nextRound();
-            round--;
+            const display = document.getElementById('word-display');
+            if (display) {
+              display.innerHTML = '<span class="text-slate-400 text-sm font-bold">點擊下方字卡...</span>';
+            }
+            const btns = document.querySelectorAll('.word-btn');
+            btns.forEach(btn => {
+              btn.classList.remove('opacity-20', 'pointer-events-none');
+            });
           };
         }
       }
