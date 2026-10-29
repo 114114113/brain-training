@@ -73,10 +73,10 @@
       border: 2px solid #cbd5e1;
     }
 
-    /* 健腦主題高畫質背景圖 (穩定高品質外鏈 + CSS備用漸層) */
+    /* 腦力樂園專屬：科技大腦神經網絡 / 邏輯幾何主題背景 */
     .hero-bg {
       background-color: #064e3b;
-      background-image: linear-gradient(135deg, rgba(6, 78, 59, 0.95) 0%, rgba(15, 23, 42, 0.85) 100%), url('https://picsum.photos/id/1050/1600/600');
+      background-image: linear-gradient(120deg, rgba(6, 78, 59, 0.92) 0%, rgba(15, 23, 42, 0.82) 100%), url('https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=1600&auto=format&fit=crop');
       background-size: cover;
       background-position: center;
     }
@@ -131,6 +131,11 @@
       
       <!-- Hero 橫幅 -->
       <div class="hero-bg rounded-3xl relative overflow-hidden shadow-xl border border-slate-200 min-h-[290px] flex items-center">
+        <!-- 背景右側加入一個現代發光大腦造型圖示裝飾 -->
+        <div class="absolute right-6 sm:right-16 opacity-15 pointer-events-none hidden sm:block">
+          <i class="fa-solid fa-brain text-[220px] text-emerald-300"></i>
+        </div>
+
         <div class="relative z-10 p-6 sm:p-10 max-w-xl">
           <div class="bg-emerald-950/60 backdrop-blur-md border border-white/20 p-6 sm:p-8 rounded-3xl space-y-4 shadow-2xl text-white">
             <div class="inline-flex items-center bg-emerald-500/30 border border-emerald-300/40 px-3 py-1 rounded-full text-xs font-bold text-emerald-200">
@@ -908,7 +913,7 @@
     }
 
     /* ---------------------------------------------------------------------- */
-    /* 6. 語文智慧王 */
+    /* 6. 語文智慧王 (全局記憶庫：跨局抽題絕不重複，修復重新選字跳關Bug) */
     /* ---------------------------------------------------------------------- */
     const masterCategoryPool = [
       { items: ['蘋果', '香蕉', '高麗菜', '葡萄'], correct: '高麗菜' },
