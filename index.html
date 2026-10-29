@@ -73,9 +73,10 @@
       border: 2px solid #cbd5e1;
     }
 
-    /* 健腦主題高畫質背景圖 */
+    /* 健腦主題高畫質背景圖 (穩定高品質外鏈 + CSS備用漸層) */
     .hero-bg {
-      background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1600&auto=format&fit=crop');
+      background-color: #064e3b;
+      background-image: linear-gradient(135deg, rgba(6, 78, 59, 0.95) 0%, rgba(15, 23, 42, 0.85) 100%), url('https://picsum.photos/id/1050/1600/600');
       background-size: cover;
       background-position: center;
     }
@@ -130,10 +131,8 @@
       
       <!-- Hero 橫幅 -->
       <div class="hero-bg rounded-3xl relative overflow-hidden shadow-xl border border-slate-200 min-h-[290px] flex items-center">
-        <div class="absolute inset-0 bg-gradient-to-r from-emerald-950/90 via-teal-900/80 to-transparent"></div>
-        
         <div class="relative z-10 p-6 sm:p-10 max-w-xl">
-          <div class="bg-emerald-900/40 backdrop-blur-md border border-white/20 p-6 sm:p-8 rounded-3xl space-y-4 shadow-2xl text-white">
+          <div class="bg-emerald-950/60 backdrop-blur-md border border-white/20 p-6 sm:p-8 rounded-3xl space-y-4 shadow-2xl text-white">
             <div class="inline-flex items-center bg-emerald-500/30 border border-emerald-300/40 px-3 py-1 rounded-full text-xs font-bold text-emerald-200">
               ✨ 每天活化腦細胞，思緒敏捷更健康！
             </div>
@@ -909,7 +908,7 @@
     }
 
     /* ---------------------------------------------------------------------- */
-    /* 6. 語文智慧王 (全局記憶庫：跨局抽題絕不重複，修復重新選字跳關Bug) */
+    /* 6. 語文智慧王 */
     /* ---------------------------------------------------------------------- */
     const masterCategoryPool = [
       { items: ['蘋果', '香蕉', '高麗菜', '葡萄'], correct: '高麗菜' },
@@ -1079,7 +1078,6 @@
             }
           };
 
-          // 正確的重置選字邏輯：清空畫面與輸入陣列，恢復字卡狀態，不觸發跳關
           window.resetReorder = () => {
             currentSelectedWords = [];
             const display = document.getElementById('word-display');
